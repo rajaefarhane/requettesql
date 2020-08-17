@@ -1,0 +1,26 @@
+body{
+
+
+  background: url(1.jpg);
+  background-size: cover;
+}
+.bouton{
+  display: inline-block;
+  background-color: gray;
+  border-radius: 10px;
+  border: 4px double #cccccc;
+  color: #eeeeee;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+.bouton :hover {
+  background-color:#ff4586;
+}
