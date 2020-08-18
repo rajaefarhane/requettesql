@@ -9,7 +9,7 @@ body{
   background-color: gray;
   border-radius: 10px;
   border: 4px double #cccccc;
-  color: #eeeeee;
+  color: black;
   text-align: center;
   font-size: 28px;
   padding: 20px;
@@ -21,6 +21,9 @@ body{
   cursor: pointer;
   margin: 5px;
 }
-.bouton :hover {
-  background-color:#ff4586;
+a{
+  float: center;
+}
+.couleur{
+color: green;
 }
