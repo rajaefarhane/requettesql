@@ -110,21 +110,20 @@ FROM datas  "</h3>
 
 <br><br>
 <h1>9) la moyenne d’âge des femmes  </h1>
-<h3 class="couleur">"SELECT  ROUND(AVG(( 2020 - (SUBSTR(`birth_date`,7))))) AS agefinale
-FROM datas
-WHERE `gender`='female' "</h3>
-    <a href="moyenneagefemale.php"><input type="button" value="afficher" class="bouton"></a>
+<h3 class="couleur">"SELECT (SELECT AVG(TRUNCATE(DATEDIFF(date(now()), CONVERT(CONCAT(RIGHT(birth_date,4),SUBSTRING(birth_date,4,2),LEFT(birth_date,2)), date))/365,0)) from datas where `gender`='male') as age_homme, (SELECT AVG(TRUNCATE(DATEDIFF(date(now()), CONVERT(CONCAT(RIGHT(birth_date,4),SUBSTRING(birth_date,4,2),LEFT(birth_date,2)), date))/365,0)) FROM datas WHERE `gender`='female') as age_femme "</h3>
+    <a href="moyenneagefemalemale.php"><input type="button" value="afficher" class="bouton"></a>
+
+      <br><br>
+      <h1>9) changement du format de la date birth-date </h1>
+      <h3 class="couleur">"UPDATE `datas` SET `birth_date`= CONVERT(CONCAT(RIGHT(birth_date,4),SUBSTRING(birth_date,4,2),LEFT(birth_date,2)), date) "</h3>
+          <a href="changeformadate.php"><input type="button" value="afficher" class="bouton"></a>
+
+
 
 <br><br>
-<h1>9) la moyenne d’âge des hommes </h1>
-<h3 class="couleur">"SELECT  ROUND(AVG(( 2020 - (SUBSTR(`birth_date`,7))))) AS agefinale
-FROM datas
-WHERE `gender`='male' "</h3>
-    <a href="moyenneagemale.php"><input type="button" value="afficher" class="bouton"></a>
-
-<br><br>
-<h1>9) Afficher la répartition par État et trier en fonction de la répartition par ordre croissant </h1>
+<h1>10) Afficher la répartition par État et trier en fonction de la répartition par ordre croissant </h1>
 <h3 class="couleur">"SELECT `country_code`, SUM(id) AS sum FROM `datas` GROUP BY `country_code` ORDER BY sum ASC"</h3>
+<h3 class="couleur">"SELECT country_code, COUNT(*) FROM datas GROUP BY country_code ORDER BY COUNT(*)"</h3>
     <a href="question10.php"><input type="button" value="afficher" class="bouton"></a>
     <br>
     <div id="footer">

@@ -4,7 +4,7 @@ include 'connection.php';
 <?php
 
 echo "<table style='border: solid 1px black;'>";
-echo "<tr><th>age</th></tr>";
+echo "<tr><th>moyenneagemale</th><th>moyenneagefemale</th></tr>";
 class TableRows extends RecursiveIteratorIterator {
   function __construct($it) {
     parent::__construct($it, self::LEAVES_ONLY);
@@ -26,7 +26,18 @@ class TableRows extends RecursiveIteratorIterator {
  try {
    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   $stmt = $conn->prepare("SELECT `first_name`, `last_name`, TRUNCATE(DATEDIFF(date(now()), CONVERT(CONCAT(RIGHT(birth_date,4),SUBSTRING(birth_date,4,2),LEFT(birth_date,2)), date))/365,0) as age from datas ");
+   $stmt = $conn->prepare("SELECT (SELECT AVG(TRUNCATE(DATEDIFF(date(now()), CONVERT(CONCAT(RIGHT(birth_date,4),SUBSTRING(birth_date,4,2),LEFT(birth_date,2)), date))/365,0)) from datas where `gender`='male') as age_homme, (SELECT AVG(TRUNCATE(DATEDIFF(date(now()), CONVERT(CONCAT(RIGHT(birth_date,4),SUBSTRING(birth_date,4,2),LEFT(birth_date,2)), date))/365,0)) FROM datas WHERE `gender`='female') as age_femme ");
+
+
+
+
+
+
+
+
+
+
+
 
 
    $stmt->execute();
